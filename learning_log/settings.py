@@ -130,11 +130,15 @@ STATIC_URL = '/static/'
 # My settings
 LOGIN_URL = 'users:login'
 
-# Heroku settings.
+# Heroku settings
 import django_heroku
 django_heroku.settings(locals())
 
+# Securing the app
 if os.environ.get('DEBUG') == 'TRUE':
     DEBUG = True
 elif os.environ.get('DEBUG') == 'FASLE':
     DEBUG = False
+
+if os.environ.get('SECRET_KEY') != None:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
